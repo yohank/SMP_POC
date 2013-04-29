@@ -1,0 +1,35 @@
+.navBar
+{
+	background-color: red !important;
+}
+
+.sapMSLITitle
+{
+	color: 	 rgb(97,106,113) !important;
+}
+
+.sapMILILabel
+{
+	color: 	 rgb(97,106,113) !important;
+}
+
+.sapMSLIDescription
+{
+	color: 	 rgb(177,186,192);
+}
+
+.sapMBar.sapMHeader-CTX
+{
+	background-image: -webkit-linear-gradient(top,#4f4f4f 0,#171717 50%,rgb(97,106,113) 100%) !important;
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#4f4f4f),color-stop(0.2,#171717),color-stop(1.0,rgb(97,106,113))) !important;
+}
+
+.sapMBar-CTX.sapMHeader-CTX .sapMLabel
+{
+	color: 	 rgb(41,171,226);	
+}
+
+.sapMILI-CTX .sapMInputInner
+{
+	color: 	 rgb(41,171,226) !important;	
+}
