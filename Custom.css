@@ -8,7 +8,8 @@
 	color: 	 rgb(97,106,113) !important;
 }
 
-.sapMILILabel, .sap-ios .sapMDLILabel
+.sapMILILabel, .sap-ios .sapMDLILabel,
+.sap-android .sapMDLILabel
 {
 	color: 	 rgb(97,106,113) !important;
 }
@@ -29,6 +30,7 @@
 	color: 	 rgb(41,171,226);	
 }
 
+.sap-android .sapMDLIValue,
 .sap-ios .sapMDLIValue 
 {
 	color: 	 rgb(41,171,226) !important;	
@@ -44,4 +46,17 @@ IMG.displayed {
     margin-left: auto;
     margin-right: auto;
     padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.sap-android .sapMDLILabel
+{
+	display: inline-block;
+	width: 30%;
+}
+.sap-android .sapMDLIValue
+{
+	display: inline-block;
+	width: 68%;
+	text-align: right;
 }
