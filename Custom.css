@@ -8,7 +8,7 @@
 	color: 	 rgb(97,106,113) !important;
 }
 
-.sapMILILabel
+.sapMILILabel, .sap-ios .sapMDLILabel
 {
 	color: 	 rgb(97,106,113) !important;
 }
@@ -29,7 +29,19 @@
 	color: 	 rgb(41,171,226);	
 }
 
-.sapMILI-CTX .sapMInputInner
+.sap-ios .sapMDLIValue 
 {
 	color: 	 rgb(41,171,226) !important;	
+}
+
+.sap-ios .sapMListInsetBG,
+.sapMPageBgStandard, .sapMPageBgList {
+	background-color: rgb(241,241,241) ;
+}
+
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
 }
