@@ -60,3 +60,19 @@ IMG.displayed {
 	width: 65%;
 	text-align: right;
 }
+
+.sap-ios .sapMDialogTitle,
+.sap-android .sapMDialogTitle
+{
+	color: 	 rgb(41,171,226) !important;	
+}
+
+.sap-ios .sapMLabel
+{
+	color: 	 rgb(241,241,241) !important;	
+}
+
+.sap-android .sapMLabel
+{
+	color: 	 rgb(97,106,113) !important;	
+}
