@@ -15,31 +15,29 @@ sap.ui.jsview("nspro_smp_demo.EE_LIST", {
 					//headerText : "Employee",
 					footerText : "Copyright 2013 /N SPRO"
 				});
-
-
-
-//		var oModel = new sap.ui.model.json.JSONModel();
-//		var	 oModel = new sap.ui.model.odata.ODataModel(  
-//		"https://smp-p1640909369trial.hanatrial.ondemand.com/public/Flight?sap-client=100");
-
-//		oModel.setHeaders(
-//		{
-//		"X-SUP-APPCID" : "e9483a12-9c1a-4da4-a458-45a5e1d2b08e"}
-//		);
+		var oModel;
+		
+		var serviceUrl = gerServiceURL("https://smp-p1640909369trial.hanatrial.ondemand.com/public/Employee/?sap-client=100");
+		var	 oModel = new sap.ui.model.odata.ODataModel(serviceUrl);
+		oModel.setHeaders(
+		{
+		"X-SUP-APPCID" : "Employee"}
+		);
 
 		var busyDialog = (busyDialog) ? busyDialog : new sap.m.BusyDialog('busyDialog',{text:'Employees...', title: 'Loading'});
-
-		var oModel = new sap.ui.model.odata.ODataModel(
-				"http://tst.nspro.it/sap/opu/odata/sap/ZBIDDER_SRV?sap-client=100",
-				false, "WEIW", "a12345");
-
-
 //		var oModelTwitter = new sap.ui.model.json.JSONModel("http://search.twitter.com/search.json?q=nsproWeb");
 
 		oModel.attachRequestSent(function(){busyDialog.open();});
 		oModel.attachRequestCompleted(function(){busyDialog.close();});
 		oModel.attachRequestFailed(function(evt) {
-			alert("Server error: " + evt.getParameter("message") + " - " + evt.getParameter("statusText"));
+			serviceUrl = gerServiceURL("http://tst.nspro.it/sap/opu/odata/sap/ZBIDDER_SRV?sap-client=100");
+			var oModel1 = new sap.ui.model.odata.ODataModel(
+					serviceUrl,
+					false, "WEIW", "a12345");
+			oModel1.attachRequestSent(function(){busyDialog.open();});
+			oModel1.attachRequestCompleted(function(){busyDialog.close();});
+			oCore = sap.ui.getCore().setModel(oModel1);
+			//alert("Server error: " + evt.getParameter("message") + " - " + evt.getParameter("statusText"));
 		});
 
 		jQuery.sap.log.debug(oModel);
@@ -55,13 +53,17 @@ sap.ui.jsview("nspro_smp_demo.EE_LIST", {
 			tap: function(oEvent) {
 				oPage2.setBindingContext(oEvent.getSource().getBindingContext());
 				busyPicDialog.open();
-				OData.read( 
-						"http://tst.nspro.it/sap/opu/odata/sap/ZBIDDER_SRV/UserPhoto('"+oPernr.getValue()+"')", 
+				OData.read({ 
+					    requestUri: "https://smp-p1640909369trial.hanatrial.ondemand.com/public/Employee/UserPhoto('"+oPernr.getValue()+"')?sap-client=100", 
+						headers: {"X-SUP-APPCID" : "Employee"} },
 						function (data) { 
 							busyPicDialog.close();
 							imageData =  data.Data;
 							urImage = "data:image/png;base64,"+ imageData;
 							oImage.setSrc(urImage);
+						}, function(err){
+							busyPicDialog.close();
+						    alert("Error occurred " + err.message);
 						}
 				);
 				app.to("page2");
@@ -234,7 +236,13 @@ sap.ui.jsview("nspro_smp_demo.EE_LIST", {
 
 
 
-
+		function gerServiceURL(sServiceUrl){
+			// if (window.location.hostname == "localhost" || window.location.hostname == "127.0.0.1" || window.location.hostname == "ymqn00518217a") {
+			//        return "proxy" + sServiceUrl;
+			//    } else {
+			        return sServiceUrl;
+			//    }
+		};
 
 
 		oPage2.addContent(oImage);
@@ -246,8 +254,6 @@ sap.ui.jsview("nspro_smp_demo.EE_LIST", {
 		var app = new sap.m.App("mobile");
 		return  app.addPage(oPage).addPage(oPage2);;
 	}
-
-
 
 
 });
